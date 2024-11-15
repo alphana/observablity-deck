@@ -66,4 +66,55 @@ layout: two-cols
 - Complex capacity planning
 - Risk of collector overload
 
+---
+layout: default
+---
 
+# Resource Planning
+
+```yaml {all|4-8|10-14}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: central-collector
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+      app: central-collector
+  resources:
+    requests:
+      cpu: "1000m"
+      memory: "1Gi"
+    limits:
+      cpu: "2000m"
+      memory: "2Gi"
+```
+
+---
+layout: default
+---
+
+# Scaling Strategy
+
+- Horizontal Pod Autoscaling (HPA)
+```yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: collector-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: central-collector
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+```

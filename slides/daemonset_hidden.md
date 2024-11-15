@@ -61,6 +61,23 @@ layout: two-cols
 - Node failure impacts collection
 - All collectors update simultaneously
 
+---
+layout: default
+---
+
+# Resource Planning
+
+- Total collectors: 240 (80 per cluster × 3)
+- Consistent resource allocation:
+  ```yaml
+  resources:
+    requests:
+      cpu: "200m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  ```
 
 ---
 layout: default

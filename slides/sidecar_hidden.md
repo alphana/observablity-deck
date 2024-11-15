@@ -66,7 +66,7 @@ layout: two-cols
 layout: default
 ---
 
-# Sidecar Resource Impact
+# Resource Impact
 
 Current State (20% utilization):
 - ~2,080 collector instances
@@ -87,4 +87,30 @@ Future State (80% utilization):
   - CPU: 832 cores (requested)
   - Memory: 1,040 GB (requested)
 
- 
+---
+layout: default
+---
+
+# Implementation Example
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-with-collector
+spec:
+  template:
+    spec:
+      containers:
+      - name: application
+        image: app-image:latest
+      - name: collector-sidecar
+        image: otel/opentelemetry-collector:latest
+        volumeMounts:
+        - name: collector-config
+          mountPath: /conf
+      volumes:
+      - name: collector-config
+        configMap:
+          name: collector-config
+```

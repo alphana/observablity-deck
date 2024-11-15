@@ -60,7 +60,34 @@ layout: two-cols
 - Careful capacity planning
 - Higher maintenance overhead
 
- 
+---
+layout: default
+---
+
+# Component Configuration
+
+DaemonSet Collectors:
+```yaml {all|3-7|9-13}
+resources:
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+```
+
+Aggregation Collectors:
+```yaml
+resources:
+  requests:
+    cpu: "500m"
+    memory: "512Mi"
+  limits:
+    cpu: "1000m"
+    memory: "1Gi"
+```
+
 ---
 layout: two-cols
 ---

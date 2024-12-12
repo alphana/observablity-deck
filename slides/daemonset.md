@@ -31,7 +31,7 @@ flowchart TD
     
     subgraph "Message Layer"
         kt1["Kafka Topics#Worker Node 1"]
-        kt2["Kafka Topics#Worker Node 1"]
+        kt2["Kafka Topics#Worker Node 2"]
     end
     
     app1 & app2 & gw1 --> ds1

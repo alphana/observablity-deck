@@ -30,12 +30,14 @@ flowchart TD
     end
     
     subgraph "Message Layer"
-        kt["Kafka Topics"]
+        kt1["Kafka Topics#Worker Node 1"]
+        kt2["Kafka Topics#Worker Node 1"]
     end
     
     app1 & app2 & gw1 --> ds1
     app3 & app4 & gw2 --> ds2
-    ds1 & ds2 --> kt
+    ds1 --> kt1
+    ds2 --> kt2
 ```
 
 ---
